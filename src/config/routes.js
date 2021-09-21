@@ -4,9 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 import Home from '../components/Home';
 import Index from '../components/Index';
 
-export default () => (
+export default ({ transactions }) => (
     <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/index' component={Index} />
+        <Route exact path='/' render={() => <Home transactions={transactions} />} />
+        <Route path='/index' render={() => <Index transactions={transactions} />} />
     </Switch>
 )
