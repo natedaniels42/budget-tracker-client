@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from 'react-router';
 import Transaction from './Transaction';
 import TransactionsModel from '../models/Transactions';
+import '../App.css';
 
 const Transactions = (props) => {
     const [on, setOn] = useState(false);
