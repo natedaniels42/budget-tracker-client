@@ -33,7 +33,18 @@ const Transactions = (props) => {
                     <button type="submit">Add Transaction</button>
                 </form>
             )}
-            {props.transactions.map(transaction => <Transaction transaction={transaction} />)}
+            <table>
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Amount</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.transactions.map(transaction => <Transaction transaction={transaction} />)}
+                </tbody>
+            </table>
         </div>
     )
 }
