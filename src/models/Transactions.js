@@ -16,6 +16,17 @@ class TransactionsModel {
         })
             .then((response) => response.json())
     };
+
+    static updateTransaction = (transaction, id) => {
+        return fetch(`${url}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(transaction)
+        })
+            .then((response) => response.json())
+    }
 }
 
 export default TransactionsModel;
