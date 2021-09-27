@@ -8,3 +8,11 @@ td {
   padding: 10px;
   border: 1px solid black;
 }
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
