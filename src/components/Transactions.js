@@ -5,28 +5,13 @@ import TransactionsModel from '../models/Transactions';
 import '../App.css';
 
 const Transactions = (props) => {
-    const [on, setOn] = useState(false);
-    const [inputs, setInputs] = useState({});
-
-    const handleChange = (event) => {
-        setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        TransactionsModel.createTransaction(inputs)
-            .then((result) => {
-                console.log(result);
-            })
-        setOn(false);
-        props.history.push('/');
-    }
-
+    const { handleChange, on, setOn, handleSubmit } = props;
+    
     return (
         <div>
             {!on && <button onClick={() => setOn(true)}>New Transaction</button>}
             {on && (
-                <form onSubmit={handleSubmit}>
+                 <form onSubmit={handleSubmit}>
                     <label htmlFor="name">Name:</label>
                     <input name="name" type="text" onChange={handleChange} />
                     <label htmlFor="amount">Amount:</label>
