@@ -3,13 +3,13 @@ import Deposit from './Deposit';
 import '../App.css';
 
 const Deposits = (props) => {
-    const { deposits, add, setAdd, handleDepositChange } = props;
+    const { deposits, add, setAdd, handleDepositChange, handleNewDeposit } = props;
     
     return (
         <div>
             {!add && <button onClick={() => setAdd(true)}>New Deposit</button>}
             {add && (
-                 <form>
+                 <form onSubmit={handleNewDeposit}>
                     <label htmlFor="name">Name:</label>
                     <input name="name" type="text" onChange={handleDepositChange} />
                     <label htmlFor="amount">Amount:</label>
