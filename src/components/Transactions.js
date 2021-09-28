@@ -5,7 +5,7 @@ import TransactionsModel from '../models/Transactions';
 import '../App.css';
 
 const Transactions = (props) => {
-    const { handleChange, on, setOn, handleSubmit } = props;
+    const { handleChange, on, setOn, handleSubmit, handleUpdate, update, setUpdate } = props;
     
     return (
         <div>
@@ -28,7 +28,14 @@ const Transactions = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.transactions.map(transaction => <Transaction transaction={transaction} key={transaction._id} />)}
+                    {props.transactions.map(transaction => 
+                        <Transaction 
+                            transaction={transaction} 
+                            key={transaction._id}
+                            handleUpdate={handleUpdate}
+                            handleChange={handleChange}
+                            update={update}
+                            setUpdate={setUpdate} />)}
                 </tbody>
             </table>
         </div>

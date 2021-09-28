@@ -4,26 +4,10 @@ import TransactionsModel from '../models/Transactions';
 import '../App.css';
 
 const Transaction = (props) => {
-    const { transaction, history } = props;
-    const [update, setUpdate] = useState(false);
-    const [inputs, setInputs] = useState(transaction);
+    const { transaction, handleUpdate, handleChange, update, setUpdate } = props;
 
     const handleClick = () => {
         setUpdate(true);
-    }
-
-    const handleChange = ({ target }) => {
-        setInputs(inputs => ({...inputs, [target.name]: target.value}));
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        TransactionsModel.updateTransaction(inputs, transaction._id)
-            .then((result) => {
-                console.log(result);
-            })
-        setUpdate(false);
-        history.push('/index');
     }
     
     return (
@@ -34,11 +18,11 @@ const Transaction = (props) => {
             <td>
                 {!update && <button onClick={handleClick}>Update</button>}
                 {update && (
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={() => handleUpdate(transaction)}>
                         <label htmlFor="name">Name:</label>
-                        <input id="name" name="name" value={inputs.name} onChange={handleChange} /><br/>
+                        <input id="name" name="name" onChange={handleChange} /><br/>
                         <label htmlFor="amount">Amount:</label>
-                        <input id="amount" name="amount" value={inputs.amount} onChange={handleChange} /><br/>
+                        <input id="amount" name="amount" onChange={handleChange} /><br/>
                         <button>Update</button>
                     </form>
                 )}

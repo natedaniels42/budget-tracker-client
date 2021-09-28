@@ -16,6 +16,7 @@ const App = (props) => {
   const [color, setColor] = useState('green');
   const [on, setOn] = useState(false);
   const [inputs, setInputs] = useState({});
+  const [update, setUpdate] = useState(false);
   
   useEffect(() => {
     TransactionsModel.getAllTransactions()
@@ -54,6 +55,15 @@ const App = (props) => {
     setYear(newDate.getFullYear());
   }
 
+  const handleUpdate = (transaction) => {
+    TransactionsModel.updateTransaction(inputs, transaction._id)
+        .then((result) => {
+            console.log(result);
+        })
+    setUpdate(false);
+    props.history.push('/index');
+}
+
   return (
     <div className="App">
       <h1>{months[month]} {year}</h1>
@@ -65,7 +75,10 @@ const App = (props) => {
         handleChange={handleChange} 
         on={on} 
         setOn={setOn} 
-        handleSubmit={handleSubmit} />
+        handleSubmit={handleSubmit}
+        handleUpdate={handleUpdate}
+        update={update}
+        setUpdate={setUpdate} />
     </div>
   );
 }
