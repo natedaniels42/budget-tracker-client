@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import Transactions from './components/Transactions';
 import TransactionsModel from './models/Transactions';
+import DepositsModel from './models/Deposits';
 
 import './App.css';
 
@@ -10,22 +11,31 @@ const App = (props) => {
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
   const [currentTransactions, setCurrentTransactions] = useState([])
+  const [currentDeposits, setCurrentDeposits] = useState([]);
   const [budget, setBudget] = useState(2000);
   const [color, setColor] = useState('green');
   const [on, setOn] = useState(false);
   const [inputs, setInputs] = useState({});
   
   useEffect(() => {
-    TransactionsModel.getAllTransactions()
+    DepositsModel.getAllDeposits()
       .then((result) => {
-        let sum = 0;
-        const current = result.filter(transaction => 
-          new Date(transaction.date).getFullYear() === year 
-          && new Date(transaction.date).getMonth() === month);
-        setCurrentTransactions(current);
-        current.forEach(transaction => sum += Number(transaction.amount));
-        setColor(budget > 0 ? 'green' : 'red');
-        setBudget((2000 - sum).toFixed(2));
+        TransactionsModel.getAllTransactions()
+          .then((result2) => {
+            let sum = 0;
+            const transactions = result2.filter(transaction => 
+              new Date(transaction.date).getFullYear() === year 
+              && new Date(transaction.date).getMonth() === month);
+            const deposits = result.filter(deposit => 
+              new Date(deposit.date).getFullYear() === year 
+              && new Date(deposit.date).getMonth() === month);
+            setCurrentTransactions(transactions);
+            setCurrentDeposits(deposits);
+            transactions.forEach(transaction => sum += Number(transaction.amount));
+            deposits.forEach(deposit => sum -= Number(deposit.amount));
+            setColor(budget > 0 ? 'green' : 'red');
+            setBudget((2000 - sum).toFixed(2));
+          })
       })
   }, [currentTransactions, budget, month, year]);
   
@@ -70,6 +80,7 @@ const App = (props) => {
       <label htmlFor="date">Change Month:</label>
       <input id="date" name="date" type="date" onChange={handleDateChange}/>
       <p>Current Budget: <span className={color}>{budget}</span></p>
+      <h2>Transactions</h2>
       <Transactions 
         transactions={currentTransactions} 
         handleChange={handleChange} 
