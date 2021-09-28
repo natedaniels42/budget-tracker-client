@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import Transactions from './components/Transactions';
+import Deposits from './components/Deposits';
 import TransactionsModel from './models/Transactions';
 import DepositsModel from './models/Deposits';
 
@@ -16,6 +17,8 @@ const App = (props) => {
   const [color, setColor] = useState('green');
   const [on, setOn] = useState(false);
   const [inputs, setInputs] = useState({});
+  const [add, setAdd] = useState(false);
+  const [depositInputs, setDepositInputs] = useState({});
   
   useEffect(() => {
     DepositsModel.getAllDeposits()
@@ -74,6 +77,10 @@ const App = (props) => {
       .catch((err) => console.log(err));
   }
 
+  const handleDepositChange = ({ target }) => {
+    setDepositInputs(inputs => ({...inputs, [target.name]: target.value}));
+  }
+
   return (
     <div className="App">
       <h1>{months[month]} {year}</h1>
@@ -89,6 +96,12 @@ const App = (props) => {
         handleSubmit={handleSubmit}
         handleUpdate={handleUpdate}
         handleDelete={handleDelete} />
+      <h2>Deposits</h2>
+      <Deposits 
+        deposits={currentDeposits}
+        add={add}
+        setAdd={setAdd}
+        handleDepositChange={handleDepositChange} />
     </div>
   );
 }
