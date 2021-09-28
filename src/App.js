@@ -29,7 +29,8 @@ const App = (props) => {
         setCurrentTransactions(current);
         current.forEach(transaction => sum += Number(transaction.amount));
         setExpenses(sum.toFixed(2));
-        setColor(budget - sum > 0 ? 'green' : 'red');
+        console.log(budget - sum)
+        setColor(budget > 0 ? 'green' : 'red');
         setBudget((2000 - sum).toFixed(2));
       })
   }, [currentTransactions]);
@@ -62,7 +63,13 @@ const App = (props) => {
         })
     setUpdate(false);
     props.history.push('/index');
-}
+  }
+
+  const handleDelete = (transaction) => {
+    TransactionsModel.deleteTransaction(transaction._id)
+      .then((result) => props.history.push('/'))
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div className="App">
@@ -78,7 +85,8 @@ const App = (props) => {
         handleSubmit={handleSubmit}
         handleUpdate={handleUpdate}
         update={update}
-        setUpdate={setUpdate} />
+        setUpdate={setUpdate}
+        handleDelete={handleDelete} />
     </div>
   );
 }

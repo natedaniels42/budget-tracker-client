@@ -27,6 +27,16 @@ class TransactionsModel {
         })
             .then((response) => response.json())
     }
+
+    static deleteTransaction = (id) => {
+        return fetch (`${url}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+    } 
 }
 
 export default TransactionsModel;

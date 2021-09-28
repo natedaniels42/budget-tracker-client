@@ -4,7 +4,7 @@ import TransactionsModel from '../models/Transactions';
 import '../App.css';
 
 const Transaction = (props) => {
-    const { transaction, handleUpdate, handleChange, update, setUpdate } = props;
+    const { transaction, handleUpdate, handleChange, handleDelete, update, setUpdate } = props;
 
     const handleClick = () => {
         setUpdate(true);
@@ -27,7 +27,7 @@ const Transaction = (props) => {
                     </form>
                 )}
             </td>
-            <td><button>Delete</button></td>
+            <td><button onClick={() => handleDelete(transaction)}>Delete</button></td>
         </tr>
     )
 }

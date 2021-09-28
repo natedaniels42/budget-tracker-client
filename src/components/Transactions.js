@@ -5,7 +5,7 @@ import TransactionsModel from '../models/Transactions';
 import '../App.css';
 
 const Transactions = (props) => {
-    const { handleChange, on, setOn, handleSubmit, handleUpdate, update, setUpdate } = props;
+    const { handleChange, on, setOn, handleSubmit, handleUpdate, handleDelete, update, setUpdate } = props;
     
     return (
         <div>
@@ -34,6 +34,7 @@ const Transactions = (props) => {
                             key={transaction._id}
                             handleUpdate={handleUpdate}
                             handleChange={handleChange}
+                            handleDelete={handleDelete}
                             update={update}
                             setUpdate={setUpdate} />)}
                 </tbody>
