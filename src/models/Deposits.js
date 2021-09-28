@@ -1,4 +1,4 @@
-const url = 'http://localhost:4000/api/v1/deposits';
+const url = 'https://budgettracker42-api.herokuapp.com/api/v1/deposits';
 
 class DepositsModel {
     static getAllDeposits = () => {

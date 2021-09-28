@@ -1,4 +1,4 @@
-const url = 'http://localhost:4000/api/v1/transactions';
+const url = 'https://budgettracker42-api.herokuapp.com/api/v1/transactions';
 
 class TransactionsModel {
     static getAllTransactions = () => {
