@@ -27,6 +27,16 @@ class DepositsModel {
         })
             .then((response) => response.json())
     }
+
+    static deleteDeposit = (id) => {
+        return fetch (`${url}/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+    } 
 }
 
 export default DepositsModel;

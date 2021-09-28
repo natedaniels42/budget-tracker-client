@@ -27,9 +27,7 @@ const Transaction = (props) => {
                     </form>
                 )}
             </td>
-            <td><button onClick={() => {
-                handleDelete(transaction);
-                handleClick()}}>Delete</button></td>
+            <td><button onClick={() => handleDelete(transaction)}>Delete</button></td>
         </tr>
     )
 }

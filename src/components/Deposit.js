@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../App.css';
 
 const Deposit = (props) => {
-    const { deposit, handleDepositChange, handleDepositUpdate } = props;
+    const { deposit, handleDepositChange, handleDepositUpdate, handleDepositDelete } = props;
     const [update, setUpdate] = useState(false); 
     
     const handleClick = () => {
@@ -26,7 +26,7 @@ const Deposit = (props) => {
                     </form>
                 )}
             </td>
-            <td><button>Delete</button></td>
+            <td><button onClick={() => handleDepositDelete(deposit)}>Delete</button></td>
         </tr>
     )
 }

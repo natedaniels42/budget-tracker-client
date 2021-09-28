@@ -101,6 +101,12 @@ const App = (props) => {
     props.history.push('/');
   }
 
+  const handleDepositDelete = (deposit) => {
+    DepositsModel.deleteDeposit(deposit._id)
+      .then((result) => props.history.push('/'))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="App">
       <h1>{months[month]} {year}</h1>
@@ -123,7 +129,8 @@ const App = (props) => {
         setAdd={setAdd}
         handleDepositChange={handleDepositChange}
         handleNewDeposit={handleNewDeposit}
-        handleDepositUpdate={handleDepositUpdate} />
+        handleDepositUpdate={handleDepositUpdate}
+        handleDepositDelete={handleDepositDelete} />
     </div>
   );
 }
