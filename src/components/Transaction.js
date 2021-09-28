@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import '../App.css';
 
 const Transaction = (props) => {
-    const { transaction, handleUpdate, handleChange, handleDelete, update, setUpdate } = props;
-
+    const { transaction, handleUpdate, handleChange, handleDelete } = props;
+    const [update, setUpdate] = useState(false); 
+    
     const handleClick = () => {
-        setUpdate(true);
+        update === false ? setUpdate(true) : setUpdate(false);
     }
     
     return (
@@ -26,7 +27,9 @@ const Transaction = (props) => {
                     </form>
                 )}
             </td>
-            <td><button onClick={() => handleDelete(transaction)}>Delete</button></td>
+            <td><button onClick={() => {
+                handleDelete(transaction);
+                handleClick()}}>Delete</button></td>
         </tr>
     )
 }

@@ -4,7 +4,7 @@ import Transaction from './Transaction';
 import '../App.css';
 
 const Transactions = (props) => {
-    const { handleChange, on, setOn, handleSubmit, handleUpdate, handleDelete, update, setUpdate } = props;
+    const { handleChange, on, setOn, handleSubmit, handleUpdate, handleDelete } = props;
     
     return (
         <div>
@@ -33,9 +33,7 @@ const Transactions = (props) => {
                             key={transaction._id}
                             handleUpdate={handleUpdate}
                             handleChange={handleChange}
-                            handleDelete={handleDelete}
-                            update={update}
-                            setUpdate={setUpdate} />)}
+                            handleDelete={handleDelete} />)}
                 </tbody>
             </table>
         </div>

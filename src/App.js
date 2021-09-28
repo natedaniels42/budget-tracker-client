@@ -14,7 +14,6 @@ const App = (props) => {
   const [color, setColor] = useState('green');
   const [on, setOn] = useState(false);
   const [inputs, setInputs] = useState({});
-  const [update, setUpdate] = useState(false);
   
   useEffect(() => {
     TransactionsModel.getAllTransactions()
@@ -56,7 +55,6 @@ const App = (props) => {
         .then((result) => {
             console.log(result);
         })
-    setUpdate(false);
     props.history.push('/index');
   }
 
@@ -79,8 +77,6 @@ const App = (props) => {
         setOn={setOn} 
         handleSubmit={handleSubmit}
         handleUpdate={handleUpdate}
-        update={update}
-        setUpdate={setUpdate}
         handleDelete={handleDelete} />
     </div>
   );
