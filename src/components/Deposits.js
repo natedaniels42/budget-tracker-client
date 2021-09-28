@@ -3,7 +3,7 @@ import Deposit from './Deposit';
 import '../App.css';
 
 const Deposits = (props) => {
-    const { deposits, add, setAdd, handleDepositChange, handleNewDeposit } = props;
+    const { deposits, add, setAdd, handleDepositChange, handleNewDeposit, handleDepositUpdate } = props;
     
     return (
         <div>
@@ -29,7 +29,9 @@ const Deposits = (props) => {
                     {deposits.map(deposit => 
                         <Deposit 
                             deposit={deposit} 
-                            key={deposit._id} />)}
+                            key={deposit._id}
+                            handleDepositChange={handleDepositChange}
+                            handleDepositUpdate={handleDepositUpdate} />)}
                 </tbody>
             </table>
         </div>

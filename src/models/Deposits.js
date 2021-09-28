@@ -16,6 +16,17 @@ class DepositsModel {
         })
             .then((response) => response.json())
     };
+
+    static updateDeposit = (deposit, id) => {
+        return fetch(`${url}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(deposit)
+        })
+            .then((response) => response.json())
+    }
 }
 
 export default DepositsModel;

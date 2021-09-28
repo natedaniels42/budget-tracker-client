@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../App.css';
 
 const Deposit = (props) => {
-    const { deposit } = props;
+    const { deposit, handleDepositChange, handleDepositUpdate } = props;
     const [update, setUpdate] = useState(false); 
     
     const handleClick = () => {
@@ -17,11 +17,11 @@ const Deposit = (props) => {
             <td>
                 {!update && <button onClick={handleClick}>Update</button>}
                 {update && (
-                    <form >
+                    <form onSubmit={() => handleDepositUpdate(deposit)}>
                         <label htmlFor="name">Name:</label>
-                        <input id="name" name="name" /><br/>
+                        <input id="name" name="name" onChange={handleDepositChange} /><br/>
                         <label htmlFor="amount">Amount:</label>
-                        <input id="amount" name="amount" /><br/>
+                        <input id="amount" name="amount" onChange={handleDepositChange} /><br/>
                         <button>Update</button>
                     </form>
                 )}

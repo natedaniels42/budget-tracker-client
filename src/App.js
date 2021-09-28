@@ -6,7 +6,7 @@ import TransactionsModel from './models/Transactions';
 import DepositsModel from './models/Deposits';
 
 import './App.css';
-import Deposit from './components/Deposit';
+
 
 const App = (props) => {
   const months =['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -69,7 +69,7 @@ const App = (props) => {
         .then((result) => {
             console.log(result);
         })
-    props.history.push('/index');
+    props.history.push('/');
   }
 
   const handleDelete = (transaction) => {
@@ -90,6 +90,14 @@ const App = (props) => {
         setCurrentDeposits(prev => prev, result);
       })
     setAdd(false);
+    props.history.push('/');
+  }
+
+  const handleDepositUpdate = (deposit) => {
+    DepositsModel.updateDeposit(depositInputs, deposit._id)
+      .then((result) => {
+        console.log(result);
+      })
     props.history.push('/');
   }
 
@@ -114,7 +122,8 @@ const App = (props) => {
         add={add}
         setAdd={setAdd}
         handleDepositChange={handleDepositChange}
-        handleNewDeposit={handleNewDeposit} />
+        handleNewDeposit={handleNewDeposit}
+        handleDepositUpdate={handleDepositUpdate} />
     </div>
   );
 }
