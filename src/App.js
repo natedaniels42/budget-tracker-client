@@ -9,8 +9,6 @@ const App = (props) => {
   const months =['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
-  const [transactions, setTransactions] = useState([]);
-  const [expenses, setExpenses] = useState(0); 
   const [currentTransactions, setCurrentTransactions] = useState([])
   const [budget, setBudget] = useState(2000);
   const [color, setColor] = useState('green');
@@ -21,19 +19,16 @@ const App = (props) => {
   useEffect(() => {
     TransactionsModel.getAllTransactions()
       .then((result) => {
-        setTransactions(result);
         let sum = 0;
         const current = result.filter(transaction => 
           new Date(transaction.date).getFullYear() === year 
           && new Date(transaction.date).getMonth() === month);
         setCurrentTransactions(current);
         current.forEach(transaction => sum += Number(transaction.amount));
-        setExpenses(sum.toFixed(2));
-        console.log(budget - sum)
         setColor(budget > 0 ? 'green' : 'red');
         setBudget((2000 - sum).toFixed(2));
       })
-  }, [currentTransactions]);
+  }, [currentTransactions, budget, month, year]);
   
   const handleChange = (event) => {
     setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));

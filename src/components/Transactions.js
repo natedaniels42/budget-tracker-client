@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router';
 import Transaction from './Transaction';
-import TransactionsModel from '../models/Transactions';
 import '../App.css';
 
 const Transactions = (props) => {
